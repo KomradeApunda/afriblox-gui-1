@@ -485,17 +485,76 @@ class MenuBar extends React.Component {
                             </MenuBarMenu>
                         </div>
                     </div>
-                    <Divider className={classNames(styles.divider)} />
+                    {/* <Divider className={classNames(styles.divider)} /> */}
                     <div
                         aria-label={this.props.intl.formatMessage(ariaMessages.tutorials)}
                         className={classNames(styles.menuBarItem, styles.hoverable)}
                         onClick={this.props.onOpenTipLibrary}
                     >
-                        <img
+                        {/* <img
                             className={styles.helpIcon}
                             src={helpIcon}
-                        />
+                        /> */}
                         <FormattedMessage {...ariaMessages.tutorials} />
+                    </div>
+                    <div
+                        className={classNames(styles.menuBarItem, styles.hoverable, {
+                            [styles.active]: this.props.editMenuOpen
+                        })}
+                        style={{ margin: '0 5px 0 5px'}}
+                        // onMouseUp={this.props.onClickEdit}
+                    >
+                    <div className={classNames(styles.editMenu)}>
+                            <FormattedMessage
+                                defaultMessage="Board"
+                                description="Text for edit dropdown menu"
+                                id="gui.menuBar.board"
+                            />
+                        </div>
+                        <MenuBarMenu
+                            className={classNames(styles.menuBarMenu)}
+                            open={this.props.editMenuOpen}
+                            place={this.props.isRtl ? 'left' : 'right'}
+                            onRequestClose={this.props.onRequestCloseEdit}
+                        >
+                            <DeletionRestorer>{(handleRestore, {restorable, deletedItem}) => (
+                                <MenuItem
+                                    className={classNames({[styles.disabled]: !restorable})}
+                                    onClick={this.handleRestoreOption(handleRestore)}
+                                >
+                                    {this.restoreOptionMessage(deletedItem)}
+                                </MenuItem>
+                            )}</DeletionRestorer>
+                        </MenuBarMenu>
+                    </div>
+                    <div
+                        className={classNames(styles.menuBarItem, styles.hoverable, {
+                            [styles.active]: this.props.editMenuOpen
+                        })}
+                        // onMouseUp={this.props.onClickEdit}
+                    >
+                    <div className={classNames(styles.editMenu)}>
+                            <FormattedMessage
+                                defaultMessage="Connect"
+                                description="Text for edit dropdown menu"
+                                id="gui.menuBar.connect"
+                            />
+                        </div>
+                        <MenuBarMenu
+                            className={classNames(styles.menuBarMenu)}
+                            open={this.props.editMenuOpen}
+                            place={this.props.isRtl ? 'left' : 'right'}
+                            onRequestClose={this.props.onRequestCloseEdit}
+                        >
+                            <DeletionRestorer>{(handleRestore, {restorable, deletedItem}) => (
+                                <MenuItem
+                                    className={classNames({[styles.disabled]: !restorable})}
+                                    onClick={this.handleRestoreOption(handleRestore)}
+                                >
+                                    {this.restoreOptionMessage(deletedItem)}
+                                </MenuItem>
+                            )}</DeletionRestorer>
+                        </MenuBarMenu>
                     </div>
                     <Divider className={classNames(styles.divider)} />
                     {this.props.canEditTitle ? (
@@ -610,25 +669,11 @@ class MenuBar extends React.Component {
                     ) : (
                         // ******** no login session is available, so don't show login stuff
                         <React.Fragment>
-                            {/* <div className={classNames(styles.menuBarItem, styles.feedbackButtonWrapper)}>
-                                <a
-                                    className={styles.feedbackLink}
-                                    href="https://scratch.mit.edu/discuss/topic/312261/"
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <Button
-                                        className={styles.feedbackButton}
-                                        iconSrc={feedbackIcon}
-                                    >
-                                        <FormattedMessage
-                                            defaultMessage="Give Feedback"
-                                            description="Label for feedback form modal button"
-                                            id="gui.menuBar.giveFeedback"
-                                        />
-                                    </Button>
-                                </a>
-                            </div> */}
+                            <div style={{ backgroundColor: 'rgba(255,255,255, 0.4)', width: '150px', height: '30px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', borderRadius: 5, padding: 2}}>
+                                <p style={{color: '#333', fontSize: 12}}>Mode</p>
+                                <button style={{ border: 'none',borderTopLeftRadius: 5, borderBottomLeftRadius: 5, padding: 4, marginRight: -8}}>Stage</button>
+                                <button style={{ border: 'none', backgroundColor: '#ccc', borderTopRightRadius: 5, borderBottomRightRadius: 5, padding: 4}}>Upload</button>
+                            </div>
                             {this.props.showComingSoon ? (
                                 <React.Fragment>
                                     {/* <MenuBarItemTooltip id="mystuff">
