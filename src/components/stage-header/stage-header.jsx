@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {defineMessages, injectIntl, intlShape} from 'react-intl';
+import {defineMessages, FormattedHTMLMessage, FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
@@ -11,6 +11,7 @@ import Controls from '../../containers/controls.jsx';
 import {getStageDimensions} from '../../lib/screen-utils';
 import {STAGE_SIZE_MODES} from '../../lib/layout-constants';
 
+import uploadIcon from './icon--upload.svg';
 import fullScreenIcon from './icon--fullscreen.svg';
 import largeStageIcon from './icon--large-stage.svg';
 import smallStageIcon from './icon--small-stage.svg';
@@ -110,6 +111,19 @@ const StageHeaderComponent = function (props) {
                 []
             ) : (
                 <div className={styles.stageSizeToggleGroup}>
+                    
+                    <div>
+                        <Button
+                            className={styles.stageButton}
+                        >
+                            <img
+                                className={styles.stageButtonIcon}
+                                src={uploadIcon}
+                                title="Upload Firmware"
+                            />
+                        </Button>
+                    </div>
+
                     <div>
                         <Button
                             className={classNames(

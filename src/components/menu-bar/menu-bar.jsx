@@ -674,9 +674,9 @@ class MenuBar extends React.Component {
                                 <button style={{ border: 'none',borderTopLeftRadius: 5, borderBottomLeftRadius: 5, padding: 4, marginRight: -8}}>Stage</button>
                                 <button style={{ border: 'none', backgroundColor: '#ccc', borderTopRightRadius: 5, borderBottomRightRadius: 5, padding: 4}}>Upload</button>
                             </div>
-                            {this.props.showComingSoon ? (
+                            
                                 <React.Fragment>
-                                    {/* <MenuBarItemTooltip id="mystuff">
+                                    <MenuBarItemTooltip id="mystuff">
                                         <div
                                             className={classNames(
                                                 styles.menuBarItem,
@@ -689,24 +689,26 @@ class MenuBar extends React.Component {
                                                 src={mystuffIcon}
                                             />
                                         </div>
-                                    </MenuBarItemTooltip> */}
-                                    <a
-                                            className={styles.feedbackLink}
-                                            href="https://thestempedia.com/product/pictoblox/feedback/"
-                                            rel="noopener noreferrer"
-                                            target="_blank"
-                                        >
-                                            <Button
-                                                className="feedback-button"
-                                                iconSrc={feedbackIcon}
+                                    </MenuBarItemTooltip> 
+                                        <div className={classNames(styles.menuBarItem, styles.feedbackButtonWrapper)}>
+                                            <a
+                                                className={styles.feedbackLink}
+                                                href="https://thestempedia.com/product/pictoblox/feedback/"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
                                             >
-                                                {/* <FormattedMessage
-                                                    defaultMessage="Give Feedback"
-                                                    description="Label for feedback form modal button"
-                                                    id="gui.menuBar.giveFeedback"
-                                                /> */}
-                                            </Button>
-                                        </a>
+                                                <Button
+                                                    className={styles.feedbackButton}
+                                                    iconSrc={feedbackIcon}
+                                                >
+                                                    <FormattedMessage
+                                                        defaultMessage="Give Feedback"
+                                                        description="Label for feedback form modal button"
+                                                        id="gui.menuBar.giveFeedback"
+                                                    /> 
+                                                </Button>
+                                            </a>
+                                        </div>    
                                     <div
                                         className="settings-div"
                                         onMouseUp={this.props.onClickSettings}
@@ -802,7 +804,7 @@ class MenuBar extends React.Component {
                                         </div>
                                     </MenuBarItemTooltip>
                                 </React.Fragment>
-                            ) : []}
+                            
                         </React.Fragment>
                     )}
                 </div>
